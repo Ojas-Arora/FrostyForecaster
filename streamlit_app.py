@@ -5,6 +5,24 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.title('🤖 Machine Learning App')
 
+# Custom JavaScript for alerts
+custom_js = """
+<script>
+    // Alert on page load
+    window.onload = function() {
+        alert('Welcome to the Machine Learning App!');
+    };
+
+    // Function to alert the prediction result
+    function showPredictionResult(species) {
+        alert('The predicted species is: ' + species);
+    }
+</script>
+"""
+
+# Render the custom JavaScript
+st.components.v1.html(custom_js)
+
 # Data Section
 with st.expander('🗂️ Data'):
     st.write('📄 **Raw data**')
