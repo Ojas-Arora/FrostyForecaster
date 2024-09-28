@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
-st.set_page_config(page_title="🐧 PenguinPredictor", page_icon=":penguin:", layout="wide")
+st.set_page_config(page_title="PenguinPredictor", page_icon=":penguin:", layout="wide")
 
 
 # Page Title
