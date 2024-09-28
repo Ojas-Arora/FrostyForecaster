@@ -21,11 +21,11 @@ st.markdown(
     """
     <style>
         .title {
-            margin-top: 10px;  /* Adjust the top margin here */
-            margin-bottom: 10px;  /* Adjust the bottom margin here */
+            margin-top: 100px;  /* Adjust the top margin here */
+            margin-bottom: 100px;  /* Adjust the bottom margin here */
         }
         .st-expander {
-            margin-top: 10px;  /* Adjust the margin for expanders */
+            margin-top: 100px;  /* Adjust the margin for expanders */
         }
     </style>
     """,
