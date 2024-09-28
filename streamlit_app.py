@@ -12,11 +12,6 @@ custom_js = """
     window.onload = function() {
         alert('Welcome to the Machine Learning App!');
     };
-
-    // Function to alert the prediction result
-    function showPredictionResult(species) {
-        alert('The predicted species is: ' + species);
-    }
 </script>
 """
 
