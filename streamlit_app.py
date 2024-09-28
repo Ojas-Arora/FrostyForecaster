@@ -3,34 +3,6 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
-# Custom JavaScript for alerts
-custom_js = """
-<script>
-    // Alert on page load
-    window.onload = function() {
-        alert('Welcome to the Machine Learning App!');
-    };
-</script>
-"""
-
-# Render the custom JavaScript
-st.components.v1.html(custom_js)
-
-# Custom CSS to reduce margins
-st.markdown(
-    """
-    <style>
-        .title {
-            margin-top: 100px;  /* Adjust the top margin here */
-            margin-bottom: 100px;  /* Adjust the bottom margin here */
-        }
-        .st-expander {
-            margin-top: 100px;  /* Adjust the margin for expanders */
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
 
 st.title('🤖 Machine Learning App')
 
