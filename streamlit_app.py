@@ -3,8 +3,11 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
+st.title('🐧 PenguinPredictor')
 
-st.title('🤖 Machine Learning App')
+# Page Title
+st.header("Discovering Penguin Species with Machine Learning")
+
 
 # Data Section
 with st.expander('🗂️ Data'):
