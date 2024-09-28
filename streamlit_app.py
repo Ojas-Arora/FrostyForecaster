@@ -7,7 +7,7 @@ st.set_page_config(page_title="PenguinPredictor", page_icon=":penguin:", layout=
 
 
 # Page Title
-st.header("Discovering Penguin Species with Machine Learning")
+st.title(" 💻 Discovering Penguin Species with Machine Learning")
 
 
 # Data Section
