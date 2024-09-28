@@ -5,11 +5,16 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
-# Custom CSS to change sidebar color
+# Custom CSS to change main page background color
 st.markdown(
     """
     <style>
-    .body {
+    /* Set background color for the main area */
+    .css-18e3th9 {
+        background-color: #00CED1; /* Dark Turquoise */
+    }
+    /* Set background color for the sidebar */
+    .css-1d391kg {
         background-color: #00CED1; /* Dark Turquoise */
     }
     </style>
