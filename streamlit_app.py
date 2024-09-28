@@ -3,11 +3,11 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
-st.set_page_config(page_title="PenguinPredictor", page_icon=":penguin:", layout="wide")
+st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
 
 # Page Title
-st.title(" 💻 Discovering Penguin Species with Machine Learning")
+st.header(" 💻 Discovering Penguin Species with Machine Learning")
 
 
 # Data Section
