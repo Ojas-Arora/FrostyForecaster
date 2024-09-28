@@ -9,7 +9,7 @@ st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout
 st.markdown(
     """
     <style>
-    .sidebar .sidebar-content {
+    .sidebar {
         background-color: #00CED1; /* Dark Turquoise */
     }
     </style>
