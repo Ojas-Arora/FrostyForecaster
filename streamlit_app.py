@@ -113,3 +113,16 @@ st.dataframe(df_prediction_proba,
 
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
 st.success(f'🎉 The predicted species is: {penguins_species[prediction][0]}')
+
+# Custom JavaScript for alerts
+custom_js = """
+<script>
+    // Alert on page load
+    window.onload = function() {
+        alert('Welcome to the Machine Learning App!');
+    };
+</script>
+"""
+
+# Render the custom JavaScript
+st.components.v1.html(custom_js)
