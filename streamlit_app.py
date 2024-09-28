@@ -123,7 +123,7 @@ custom_js = """
 <script>
     // Alert on page load
     window.onload = function() {
-        alert('Welcome to the Machine Learning App!');
+        alert('🌟 Welcome to the Penguin Predictor! Explore the fascinating world of penguin species with our machine learning tool!');
     };
 </script>
 """
