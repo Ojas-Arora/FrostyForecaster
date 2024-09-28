@@ -16,9 +16,6 @@ custom_js = """
 # Render the custom JavaScript
 st.components.v1.html(custom_js)
 
-# Adding top margin to the title
-st.markdown("<div style='margin-top: -200px;'></div>", unsafe_allow_html=True)
-
 st.title('🤖 Machine Learning App')
 
 # Data Section
