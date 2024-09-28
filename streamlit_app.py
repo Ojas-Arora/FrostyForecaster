@@ -5,6 +5,18 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
+# Custom CSS to change sidebar color
+st.markdown(
+    """
+    <style>
+    .sidebar .sidebar-content {
+        background-color: #00CED1; /* Dark Turquoise */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 
 # Page Title
 st.header(" 💻 Discovering Penguin Species with Machine Learning")
