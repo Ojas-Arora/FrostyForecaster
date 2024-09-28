@@ -16,6 +16,22 @@ custom_js = """
 # Render the custom JavaScript
 st.components.v1.html(custom_js)
 
+# Custom CSS to reduce margins
+st.markdown(
+    """
+    <style>
+        .title {
+            margin-top: 10px;  /* Adjust the top margin here */
+            margin-bottom: 10px;  /* Adjust the bottom margin here */
+        }
+        .st-expander {
+            margin-top: 10px;  /* Adjust the margin for expanders */
+        }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 st.title('🤖 Machine Learning App')
 
 # Data Section
