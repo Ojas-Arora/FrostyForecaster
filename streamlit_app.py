@@ -3,8 +3,6 @@ import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
 
-st.title('🤖 Machine Learning App')
-
 # Custom JavaScript for alerts
 custom_js = """
 <script>
@@ -18,6 +16,8 @@ custom_js = """
 # Render the custom JavaScript
 st.components.v1.html(custom_js)
 
+
+st.title('🤖 Machine Learning App')
 # Data Section
 with st.expander('🗂️ Data'):
     st.write('📄 **Raw data**')
