@@ -30,27 +30,14 @@ with st.expander("📊 Data visualization"):
 
 # Input features in sidebar
 with st.sidebar:
-    # Change color of the sidebar heading
     st.markdown('<h3 style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
-    
-    # Change color of the selectbox and slider labels
     st.markdown('<span style="color: #00CED1;">🏝️ Island</span>', unsafe_allow_html=True)
-    island = st.selectbox('', ('Biscoe', 'Dream', 'Torgersen'))  # Empty string to avoid repeating the label
-
-    st.markdown('<span style="color: #00CED1;">📏 Bill length (mm)</span>', unsafe_allow_html=True)
-    bill_length_mm = st.slider('', 32.1, 59.6, 43.9)
-
-    st.markdown('<span style="color: #00CED1;">📏 Bill depth (mm)</span>', unsafe_allow_html=True)
-    bill_depth_mm = st.slider('', 13.1, 21.5, 17.2)
-
-    st.markdown('<span style="color: #00CED1;">📏 Flipper length (mm)</span>', unsafe_allow_html=True)
-    flipper_length_mm = st.slider('', 172.0, 231.0, 201.0)
-
-    st.markdown('<span style="color: #00CED1;">⚖️ Body mass (g)</span>', unsafe_allow_html=True)
-    body_mass_g = st.slider('', 2700.0, 6300.0, 4207.0)
-
-    st.markdown('<span style="color: #00CED1;">🚻 Gender</span>', unsafe_allow_html=True)
-    gender = st.selectbox('', ('Male', 'Female'))
+    island = st.selectbox('', ('Biscoe', 'Dream', 'Torgersen'))
+    bill_length_mm = st.slider('📏 Bill length (mm)', 32.1, 59.6, 43.9)
+    bill_depth_mm = st.slider('📏 Bill depth (mm)', 13.1, 21.5, 17.2)
+    flipper_length_mm = st.slider('📏 Flipper length (mm)', 172.0, 231.0, 201.0)
+    body_mass_g = st.slider('⚖️ Body mass (g)', 2700.0, 6300.0, 4207.0)
+    gender = st.selectbox('🚻 Gender', ('Male', 'Female'))
 
     # Create a DataFrame for the input features
     data = {'island': island,
