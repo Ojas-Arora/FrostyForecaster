@@ -118,7 +118,11 @@ st.dataframe(df_prediction_proba,
              }, hide_index=True)
 
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
-st.success(f'🎉 The predicted species is: {penguins_species[prediction][0]}')
+predicted_species = penguins_species[prediction][0]
+
+# Custom HTML to style the success message in dark turquoise
+st.markdown(f'<h3 style="color: #00CED1;">🎉 The predicted species is: {predicted_species}</h3>', unsafe_allow_html=True)
+
 
 # Custom JavaScript for alerts
 custom_js = """
