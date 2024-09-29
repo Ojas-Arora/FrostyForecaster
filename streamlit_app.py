@@ -5,51 +5,30 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
-# Custom CSS to change text color to darkturquoise
-st.markdown(
-    """
-    <style>
-    /* Set text color to darkturquoise */
-    html, body, [class*="css"]  {
-        color: #00CED1; /* Dark Turquoise */
-    }
-    /* Set background color for the main area */
-    .css-18e3th9 {
-        background-color: #00CED1; /* Dark Turquoise */
-    }
-    /* Set background color for the sidebar */
-    .css-1d391kg {
-        background-color: #00CED1; /* Dark Turquoise */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
 # Page Title
-st.header(" 💻 Discovering Penguin Species with Machine Learning")
+st.markdown('<h1 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h1>', unsafe_allow_html=True)
 
 # Data Section
-with st.expander('🗂️ Data'):
-    st.write('📄 **Raw data**')
+with st.expander('<h3 style="color: #00CED1;">🗂️ Data</h3>', unsafe_allow_html=True):
+    st.markdown('<p style="color: #00CED1;">📄 <b>Raw data</b></p>', unsafe_allow_html=True)
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
     st.dataframe(df)
 
-    st.write('🔢 **X (Features)**')
+    st.markdown('<p style="color: #00CED1;">🔢 <b>X (Features)</b></p>', unsafe_allow_html=True)
     X_raw = df.drop('species', axis=1)
     st.dataframe(X_raw)
 
-    st.write('🎯 **y (Target)**')
+    st.markdown('<p style="color: #00CED1;">🎯 <b>y (Target)</b></p>', unsafe_allow_html=True)
     y_raw = df.species
     st.dataframe(y_raw)
 
 # Data Visualization Section
-with st.expander('📊 Data visualization'):
+with st.expander('<h3 style="color: #00CED1;">📊 Data visualization</h3>', unsafe_allow_html=True):
     st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
 
 # Input features in sidebar
 with st.sidebar:
-    st.header('🛠️ Input features')
+    st.markdown('<h3 style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
     island = st.selectbox('🏝️ Island', ('Biscoe', 'Dream', 'Torgersen'))
     bill_length_mm = st.slider('📏 Bill length (mm)', 32.1, 59.6, 43.9)
     bill_depth_mm = st.slider('📏 Bill depth (mm)', 13.1, 21.5, 17.2)
@@ -68,10 +47,10 @@ with st.sidebar:
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 # Input Features Display
-with st.expander('📥 Input features'):
-    st.write('📝 **Input penguin data**')
+with st.expander('<h3 style="color: #00CED1;">📥 Input features</h3>', unsafe_allow_html=True):
+    st.markdown('<p style="color: #00CED1;">📝 <b>Input penguin data</b></p>', unsafe_allow_html=True)
     st.dataframe(input_df)
-    st.write('🧮 **Combined penguins data**')
+    st.markdown('<p style="color: #00CED1;">🧮 <b>Combined penguins data</b></p>', unsafe_allow_html=True)
     st.dataframe(input_penguins)
 
 # Data Preparation Section
@@ -91,10 +70,10 @@ def target_encode(val):
 
 y = y_raw.apply(target_encode)
 
-with st.expander('⚙️ Data preparation'):
-    st.write('🔢 **Encoded X (input penguin)**')
+with st.expander('<h3 style="color: #00CED1;">⚙️ Data preparation</h3>', unsafe_allow_html=True):
+    st.markdown('<p style="color: #00CED1;">🔢 <b>Encoded X (input penguin)</b></p>', unsafe_allow_html=True)
     st.dataframe(input_row)
-    st.write('🎯 **Encoded y (target)**')
+    st.markdown('<p style="color: #00CED1;">🎯 <b>Encoded y (target)</b></p>', unsafe_allow_html=True)
     st.dataframe(y)
 
 # Model Training and Prediction Section
@@ -108,7 +87,7 @@ df_prediction_proba = pd.DataFrame(prediction_proba)
 df_prediction_proba.columns = ['Adelie', 'Chinstrap', 'Gentoo']
 
 # Prediction Display Section
-st.subheader('🔮 Predicted Species Probability')
+st.markdown('<h2 style="color: #00CED1;">🔮 Predicted Species Probability</h2>', unsafe_allow_html=True)
 st.dataframe(df_prediction_proba,
              column_config={
                  'Adelie': st.column_config.ProgressColumn(
