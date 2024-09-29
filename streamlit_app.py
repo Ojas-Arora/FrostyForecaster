@@ -9,7 +9,7 @@ st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout
 st.markdown('<h2 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
 
 # Data Section
-with st.expander("🗂️ Data"):
+with st.expander('<span style="color: #00CED1;">🗂️ Data</span>', expanded=False):
     st.markdown('<h3 style="color: #00CED1;">Data</h3>', unsafe_allow_html=True)
     st.markdown('<p style="color: #00CED1;">📄 <b>Raw data</b></p>', unsafe_allow_html=True)
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
