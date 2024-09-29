@@ -6,7 +6,7 @@ from sklearn.ensemble import RandomForestClassifier
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
 # Page Title
-st.markdown('<h3 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h3>', unsafe_allow_html=True)
+st.markdown('<h2 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
 
 # Data Section
 with st.expander("🗂️ Data"):
