@@ -9,7 +9,8 @@ st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout
 st.markdown('<h1 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h1>', unsafe_allow_html=True)
 
 # Data Section
-with st.expander('<h3 style="color: #00CED1;">🗂️ Data</h3>', unsafe_allow_html=True):
+with st.expander("🗂️ Data"):
+    st.markdown('<h3 style="color: #00CED1;">Data</h3>', unsafe_allow_html=True)
     st.markdown('<p style="color: #00CED1;">📄 <b>Raw data</b></p>', unsafe_allow_html=True)
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
     st.dataframe(df)
@@ -23,7 +24,8 @@ with st.expander('<h3 style="color: #00CED1;">🗂️ Data</h3>', unsafe_allow_h
     st.dataframe(y_raw)
 
 # Data Visualization Section
-with st.expander('<h3 style="color: #00CED1;">📊 Data visualization</h3>', unsafe_allow_html=True):
+with st.expander("📊 Data visualization"):
+    st.markdown('<h3 style="color: #00CED1;">Data visualization</h3>', unsafe_allow_html=True)
     st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
 
 # Input features in sidebar
@@ -47,7 +49,8 @@ with st.sidebar:
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
 # Input Features Display
-with st.expander('<h3 style="color: #00CED1;">📥 Input features</h3>', unsafe_allow_html=True):
+with st.expander("📥 Input features"):
+    st.markdown('<h3 style="color: #00CED1;">Input features</h3>', unsafe_allow_html=True)
     st.markdown('<p style="color: #00CED1;">📝 <b>Input penguin data</b></p>', unsafe_allow_html=True)
     st.dataframe(input_df)
     st.markdown('<p style="color: #00CED1;">🧮 <b>Combined penguins data</b></p>', unsafe_allow_html=True)
@@ -70,7 +73,8 @@ def target_encode(val):
 
 y = y_raw.apply(target_encode)
 
-with st.expander('<h3 style="color: #00CED1;">⚙️ Data preparation</h3>', unsafe_allow_html=True):
+with st.expander("⚙️ Data preparation"):
+    st.markdown('<h3 style="color: #00CED1;">Data preparation</h3>', unsafe_allow_html=True)
     st.markdown('<p style="color: #00CED1;">🔢 <b>Encoded X (input penguin)</b></p>', unsafe_allow_html=True)
     st.dataframe(input_row)
     st.markdown('<p style="color: #00CED1;">🎯 <b>Encoded y (target)</b></p>', unsafe_allow_html=True)
