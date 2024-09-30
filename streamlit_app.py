@@ -200,11 +200,3 @@ predicted_species = penguins_species[prediction][0]
 # Custom animated success message
 st.markdown(f'<div class="success-message">🎉 The predicted species is: <b style="color:#00CED1;">{predicted_species}</b></div>', unsafe_allow_html=True)
 
-# Loading spinner for predictions
-custom_loading = """
-<div style="text-align:center">
-    <img src="https://i.gifer.com/YCZH.gif" width="50" height="50">
-    <p style="color: #00CED1;">Calculating... Please wait!</p>
-</div>
-"""
-st.markdown(custom_loading, unsafe_allow_html=True)
