@@ -2,42 +2,106 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 from sklearn.ensemble import RandomForestClassifier
+import requests
+from streamlit_lottie import st_lottie
 
+# Load Lottie Animation
+def load_lottie_url(url: str):
+    r = requests.get(url)
+    if r.status_code != 200:
+        return None
+    return r.json()
+
+penguin_animation = load_lottie_url("https://assets9.lottiefiles.com/packages/lf20_jcikwtux.json")
+
+# Set up page configuration
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
-# CSS animations for titles
+# CSS for animations and custom styling
 st.markdown("""
     <style>
+    .fade-in-text {
+        animation: fadeIn ease 3s;
+    }
     @keyframes fadeIn {
-        0% { opacity: 0; }
-        100% { opacity: 1; }
-    }
-    
-    .fade-in {
-        animation: fadeIn ease 2s;
+        0% {opacity: 0;}
+        100% {opacity: 1;}
     }
 
-    @keyframes bounce {
-        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-        40% { transform: translateY(-30px); }
-        60% { transform: translateY(-15px); }
+    .stApp {
+        background-image: url("https://www.link-to-your-background-image.com");
+        background-size: cover;
     }
 
-    .bounce {
-        animation: bounce 2s infinite;
+    div.stButton > button:first-child {
+        background-color: #00CED1;
+        color: white;
+        border-radius: 5px;
+        height: 40px;
+        width: 200px;
+        font-size: 16px;
     }
-    
+
+    div.stButton > button:hover {
+        background-color: #007c89;
+        color: white;
+    }
+
+    .success-message {
+        animation: slide-in 2s ease-out;
+    }
+
+    @keyframes slide-in {
+        0% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: #555;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%; 
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
     </style>
-""", unsafe_allow_html=True)
+    """, unsafe_allow_html=True)
 
-# Page Title with animation
-st.markdown('<h2 class="fade-in" style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
+# Animated header with fade-in effect
+st.markdown('<h2 class="fade-in-text" style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
 
-# Data Section
+# Lottie animation for penguins
+st_lottie(penguin_animation, speed=1, height=400, key="penguin")
+
+# Data section
 with st.expander("🗂️ Data"):
     st.markdown('<h3 style="color: #00CED1;">Data</h3>', unsafe_allow_html=True)
-    st.markdown('<p style="color: #00CED1;">📄 <b>Raw data</b></p>', unsafe_allow_html=True)
     df = pd.read_csv('https://raw.githubusercontent.com/dataprofessor/data/master/penguins_cleaned.csv')
+    st.markdown('<p style="color: #00CED1;">📄 <b>Raw data</b></p>', unsafe_allow_html=True)
     st.dataframe(df)
 
     st.markdown('<p style="color: #00CED1;">🔢 <b>X (Features)</b></p>', unsafe_allow_html=True)
@@ -48,11 +112,29 @@ with st.expander("🗂️ Data"):
     y_raw = df.species
     st.dataframe(y_raw)
 
-# Input features in sidebar
+# Data visualization section
+with st.expander("📊 Data visualization"):
+    st.markdown('<h3 style="color: #00CED1;">Data visualization</h3>', unsafe_allow_html=True)
+    st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
+
+# Input features in sidebar with tooltips
 with st.sidebar:
-    st.markdown('<h3 class="fade-in" style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
-    island = st.selectbox('🏝️ Island', ('Biscoe', 'Dream', 'Torgersen'))
-    bill_length_mm = st.slider('📏 Bill length (mm)', 32.1, 59.6, 43.9)
+    st.markdown('<h3 style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div class="tooltip">🏝️ Island
+        <span class="tooltiptext">Choose the island of the penguin</span>
+    </div>
+    """, unsafe_allow_html=True)
+    island = st.selectbox('Island', ('Biscoe', 'Dream', 'Torgersen'))
+
+    st.markdown("""
+    <div class="tooltip">📏 Bill length (mm)
+        <span class="tooltiptext">Select the bill length of the penguin</span>
+    </div>
+    """, unsafe_allow_html=True)
+    bill_length_mm = st.slider('Bill length (mm)', 32.1, 59.6, 43.9)
+
     bill_depth_mm = st.slider('📏 Bill depth (mm)', 13.1, 21.5, 17.2)
     flipper_length_mm = st.slider('📏 Flipper length (mm)', 172.0, 231.0, 201.0)
     body_mass_g = st.slider('⚖️ Body mass (g)', 2700.0, 6300.0, 4207.0)
@@ -68,7 +150,7 @@ with st.sidebar:
     input_df = pd.DataFrame(data, index=[0])
     input_penguins = pd.concat([input_df, X_raw], axis=0)
 
-# Input Features Display
+# Input features display
 with st.expander("📥 Input features"):
     st.markdown('<h3 style="color: #00CED1;">Input features</h3>', unsafe_allow_html=True)
     st.markdown('<p style="color: #00CED1;">📝 <b>Input penguin data</b></p>', unsafe_allow_html=True)
@@ -84,9 +166,7 @@ X = df_penguins[1:]
 input_row = df_penguins[:1]
 
 # Encode y (Target)
-target_mapper = {'Adelie': 0,
-                 'Chinstrap': 1,
-                 'Gentoo': 2}
+target_mapper = {'Adelie': 0, 'Chinstrap': 1, 'Gentoo': 2}
 
 def target_encode(val):
     return target_mapper[val]
@@ -112,46 +192,19 @@ df_prediction_proba.columns = ['Adelie', 'Chinstrap', 'Gentoo']
 
 # Prediction Display Section
 st.markdown('<h2 style="color: #00CED1;">🔮 Predicted Species Probability</h2>', unsafe_allow_html=True)
-st.dataframe(df_prediction_proba,
-             column_config={
-                 'Adelie': st.column_config.ProgressColumn(
-                     'Adelie',
-                     format='%f',
-                     width='medium',
-                     min_value=0,
-                     max_value=1
-                 ),
-                 'Chinstrap': st.column_config.ProgressColumn(
-                     'Chinstrap',
-                     format='%f',
-                     width='medium',
-                     min_value=0,
-                     max_value=1
-                 ),
-                 'Gentoo': st.column_config.ProgressColumn(
-                     'Gentoo',
-                     format='%f',
-                     width='medium',
-                     min_value=0,
-                     max_value=1
-                 ),
-             }, hide_index=True)
+st.dataframe(df_prediction_proba, hide_index=True)
 
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
 predicted_species = penguins_species[prediction][0]
 
-# Custom HTML to style the success message in dark turquoise with bounce animation
-st.markdown(f'<h3 class="bounce" style="color: #00CED1;">🎉 The predicted species is: {predicted_species}</h3>', unsafe_allow_html=True)
+# Custom animated success message
+st.markdown(f'<div class="success-message">🎉 The predicted species is: <b style="color:#00CED1;">{predicted_species}</b></div>', unsafe_allow_html=True)
 
-# Custom JavaScript for alerts
-custom_js = """
-<script>
-    // Alert on page load
-    window.onload = function() {
-        alert('🌟 Welcome to the Penguin Predictor! Explore the fascinating world of penguin species with our machine learning tool!');
-    };
-</script>
+# Loading spinner for predictions
+custom_loading = """
+<div style="text-align:center">
+    <img src="https://i.gifer.com/YCZH.gif" width="50" height="50">
+    <p style="color: #00CED1;">Calculating... Please wait!</p>
+</div>
 """
-
-# Render the custom JavaScript
-st.components.v1.html(custom_js)
+st.markdown(custom_loading, unsafe_allow_html=True)
