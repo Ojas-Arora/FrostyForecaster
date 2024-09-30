@@ -198,5 +198,6 @@ penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
 predicted_species = penguins_species[prediction][0]
 
 # Custom animated success message
-st.markdown(f'<div class="success-message">🎉 The predicted species is: <b style="color:#00CED1;">{predicted_species}</b></div>', unsafe_allow_html=True)
+st.markdown(f'<h3>🎉 The predicted species is: <b style="color:#00CED1;">{predicted_species}</b></h3>', unsafe_allow_html=True)
+
 
