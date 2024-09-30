@@ -5,8 +5,33 @@ from sklearn.ensemble import RandomForestClassifier
 
 st.set_page_config(page_title="Penguin Predictor", page_icon=":penguin:", layout="wide")
 
-# Page Title
-st.markdown('<h2 style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
+# CSS animations for titles
+st.markdown("""
+    <style>
+    @keyframes fadeIn {
+        0% { opacity: 0; }
+        100% { opacity: 1; }
+    }
+    
+    .fade-in {
+        animation: fadeIn ease 2s;
+    }
+
+    @keyframes bounce {
+        0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+        40% { transform: translateY(-30px); }
+        60% { transform: translateY(-15px); }
+    }
+
+    .bounce {
+        animation: bounce 2s infinite;
+    }
+    
+    </style>
+""", unsafe_allow_html=True)
+
+# Page Title with animation
+st.markdown('<h2 class="fade-in" style="color: #00CED1;">💻 Discovering Penguin Species with Machine Learning</h2>', unsafe_allow_html=True)
 
 # Data Section
 with st.expander("🗂️ Data"):
@@ -23,14 +48,9 @@ with st.expander("🗂️ Data"):
     y_raw = df.species
     st.dataframe(y_raw)
 
-# Data Visualization Section
-with st.expander("📊 Data visualization"):
-    st.markdown('<h3 style="color: #00CED1;">Data visualization</h3>', unsafe_allow_html=True)
-    st.scatter_chart(data=df, x='bill_length_mm', y='body_mass_g', color='species')
-
 # Input features in sidebar
 with st.sidebar:
-    st.markdown('<h3 style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
+    st.markdown('<h3 class="fade-in" style="color: #00CED1;">🛠️ Input features</h3>', unsafe_allow_html=True)
     island = st.selectbox('🏝️ Island', ('Biscoe', 'Dream', 'Torgersen'))
     bill_length_mm = st.slider('📏 Bill length (mm)', 32.1, 59.6, 43.9)
     bill_depth_mm = st.slider('📏 Bill depth (mm)', 13.1, 21.5, 17.2)
@@ -120,9 +140,8 @@ st.dataframe(df_prediction_proba,
 penguins_species = np.array(['Adelie', 'Chinstrap', 'Gentoo'])
 predicted_species = penguins_species[prediction][0]
 
-# Custom HTML to style the success message in dark turquoise
-st.markdown(f'<h3 style="color: #00CED1;">🎉 The predicted species is: {predicted_species}</h3>', unsafe_allow_html=True)
-
+# Custom HTML to style the success message in dark turquoise with bounce animation
+st.markdown(f'<h3 class="bounce" style="color: #00CED1;">🎉 The predicted species is: {predicted_species}</h3>', unsafe_allow_html=True)
 
 # Custom JavaScript for alerts
 custom_js = """
